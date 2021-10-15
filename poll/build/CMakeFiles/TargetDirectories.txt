@@ -1,0 +1,4 @@
+/home/qizhiyun/muduo_code/poll/build/CMakeFiles/edit_cache.dir
+/home/qizhiyun/muduo_code/poll/build/CMakeFiles/rebuild_cache.dir
+/home/qizhiyun/muduo_code/poll/build/CMakeFiles/echocli.dir
+/home/qizhiyun/muduo_code/poll/build/CMakeFiles/echosrv_poll.dir

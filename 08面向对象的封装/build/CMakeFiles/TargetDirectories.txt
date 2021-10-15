@@ -1,0 +1,3 @@
+/home/qizhiyun/muduo_code/08thread/build/CMakeFiles/rebuild_cache.dir
+/home/qizhiyun/muduo_code/08thread/build/CMakeFiles/edit_cache.dir
+/home/qizhiyun/muduo_code/08thread/build/CMakeFiles/Thread_test.dir
