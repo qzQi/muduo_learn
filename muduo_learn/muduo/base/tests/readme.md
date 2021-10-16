@@ -3,3 +3,4 @@
 我们应该也需要为我们的测试文件*.cc添加cmake文件。
 
 这个文件夹也生成在build下，与base的目录在一起
+每当添加新程序的时候记得修改cmakefile，与生成lib的cmakefile
