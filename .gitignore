@@ -1,2 +1,4 @@
 build/
-/muduo/compile_commands.json
+muduo_learn/compile_commands.json
+muduo_learn/.vscode
+muduo_learn/mytest
