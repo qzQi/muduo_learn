@@ -1,0 +1,6 @@
+自己的测试文件，编译方法，在这个下面的添加CmakeLists.txt。
+然后在修改下全局的cmake文件。
+
+编译后的文件依然在build目录下面。  我们这个cmake文件写的是可执行的，所以在
+build下生成的是bin文件夹，muduo/base里面我们使用的是lib，在build下生成了lib文件。
+build下也有一个专门用来构建test文件夹下的makefile
