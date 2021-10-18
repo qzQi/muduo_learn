@@ -14,7 +14,9 @@ namespace muduo
 namespace CurrentThread
 {
 __thread int t_cachedTid = 0;
+// 线程真实pid（tid）的缓存，这个需要syscall来获取
 __thread char t_tidString[32];
+// tid的字符串形式
 __thread int t_tidStringLength = 6;
 __thread const char* t_threadName = "unknown";
 static_assert(std::is_same<int, pid_t>::value, "pid_t should be int");

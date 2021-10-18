@@ -22,6 +22,9 @@ set(base_SRCS
   Timestamp.cc
   Exception.cc
   CurrentThread.cc
+  Thread.cc
+  CountDownLatch.cc
+  Condition.cc
   )
 
 # 用我们的源文件生成一个库lib 生成muduo_base库

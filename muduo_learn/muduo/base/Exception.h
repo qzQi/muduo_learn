@@ -31,7 +31,9 @@ class Exception : public std::exception
   }
 
  private:
+//  捕获异常抛出原因
   string message_;
+// 存储栈信息，实现在CurrentThread
   string stack_;
 };
 
