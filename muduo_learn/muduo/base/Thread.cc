@@ -6,6 +6,7 @@
 #include "muduo/base/Thread.h"
 #include "muduo/base/CurrentThread.h"
 #include "muduo/base/Exception.h"
+#include"muduo/base/Timestamp.h"
 // #include "muduo/base/Logging.h"
 
 #include <type_traits>//这个在哪里使用了？
@@ -49,6 +50,7 @@ class ThreadNameInitializer
 };
 
 ThreadNameInitializer init;
+// 什么意思，实例化一个对象，
 
 struct ThreadData
 {
@@ -105,7 +107,7 @@ struct ThreadData
     }
   }
 };
-
+// 一个‘全局函数’不使用静态了，感觉这个实现有点麻烦。
 void* startThread(void* obj)
 {
   ThreadData* data = static_cast<ThreadData*>(obj);

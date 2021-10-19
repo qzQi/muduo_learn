@@ -13,6 +13,7 @@ namespace muduo
 namespace CurrentThread
 {
   // internal
+  // __thread修饰表明这是个线程特有的
   extern __thread int t_cachedTid;
   extern __thread char t_tidString[32];
   extern __thread int t_tidStringLength;
@@ -21,7 +22,8 @@ namespace CurrentThread
 
   inline int tid()
   {
-    if (__builtin_expect(t_cachedTid == 0, 0))
+    // 如果tid为0，就设置它
+    if (__builtin_expect(t_cachedTid == 0, 0))//这些编译器提供的暂时不看，太菜用不到
     {
       cacheTid();
     }
