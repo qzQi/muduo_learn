@@ -55,7 +55,8 @@ int main()
   printf("pid=%d, tid=%d\n", ::getpid(), muduo::CurrentThread::tid());
 
   muduo::Thread t1(threadFunc);
-  t1.start();//看代码这个不应该被阻塞吗？唯一解释就是pthread_create之后不使用join也会运行。
+  t1.start();
+  //看代码这个不应该被阻塞吗？唯一解释就是pthread_create之后不使用join也会运行。
   // 确实，countdown之后才运行到这里
   printf("t1.tid=%d\n", t1.tid());
   t1.join();

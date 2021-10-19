@@ -1,20 +1,20 @@
-// #include "muduo/base/CountDownLatch.h"
-// #include "muduo/base/Mutex.h"
-// #include "muduo/base/Thread.h"
+#include "muduo/base/CountDownLatch.h"
+#include "muduo/base/Mutex.h"
+#include "muduo/base/Thread.h"
 #include "muduo/base/Timestamp.h"
 
 #include <vector>
 #include <stdio.h>
-#include <thread>
-#include <mutex>
+// #include <thread>
+// #include <mutex>
 
 using namespace muduo;
-using namespace std;
+// using namespace std;
 
-// MutexLock g_mutex;
-std::mutex g_mutex;
+MutexLock g_mutex;
+// std::mutex g_mutex;
 
-vector<int> g_vec;
+std::vector<int> g_vec;
 const int kCount = 10*1000*1000;
 // 实验目的：测试一下锁的效率，已经多个线程争锁的效率。
 // 我们自己实验下，c++锁的效率。

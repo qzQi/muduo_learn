@@ -25,6 +25,7 @@ set(base_SRCS
   Thread.cc
   CountDownLatch.cc
   Condition.cc
+  ThreadPool.cc
   )
 
 # 用我们的源文件生成一个库lib 生成muduo_base库
