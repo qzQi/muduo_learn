@@ -25,6 +25,7 @@ class Test : muduo::noncopyable
 };
 
 muduo::ThreadLocal<Test> testObj1;
+// 为每一个类定义一个数据
 muduo::ThreadLocal<Test> testObj2;
 
 void print()

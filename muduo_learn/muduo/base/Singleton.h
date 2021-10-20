@@ -46,10 +46,10 @@ class Singleton : noncopyable
   static void init()
   {
     value_ = new T();
-    if (!detail::has_no_destroy<T>::value)//这看不出来如何起作用
+    if (!detail::has_no_destroy<T>::value)//这看不出来如何起作用,模板黑魔法，判断有无成员函数
     {
       ::atexit(destroy);
-      // 这个啥意思？程序退出的时候销毁对象，有必要使用？一个unique_ptr work ok.
+      // 这个啥意思？程序退出的时候销毁对象，有必要使用？一个smart_ptr work ok.
     }
   }
 

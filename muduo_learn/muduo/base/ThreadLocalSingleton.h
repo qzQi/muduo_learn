@@ -10,7 +10,9 @@
 
 #include <assert.h>
 #include <pthread.h>
-
+/*
+使用了嵌套类（使用TSD），和 __thread关键字
+*/
 namespace muduo
 {
 
@@ -20,7 +22,7 @@ class ThreadLocalSingleton : noncopyable
  public:
   ThreadLocalSingleton() = delete;
   ~ThreadLocalSingleton() = delete;
-
+// 返回对象引用
   static T& instance()
   {
     if (!t_value_)
@@ -30,7 +32,7 @@ class ThreadLocalSingleton : noncopyable
     }
     return *t_value_;
   }
-
+// 返回指针
   static T* pointer()
   {
     return t_value_;
@@ -46,6 +48,7 @@ class ThreadLocalSingleton : noncopyable
     t_value_ = 0;
   }
 
+// 嵌套类，不过是为了自动销毁，使用sp貌似就不需要singleton了
   class Deleter
   {
    public:
@@ -70,6 +73,7 @@ class ThreadLocalSingleton : noncopyable
 
   static __thread T* t_value_;
   static Deleter deleter_;
+  // 主要用来销毁指针所指的对象？
 };
 
 template<typename T>

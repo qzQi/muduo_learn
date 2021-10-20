@@ -28,3 +28,15 @@ target_link_libraries(threadpool_test muduo_base)
 
 add_executable(singleton_test Singleton_test.cc)
 target_link_libraries(singleton_test muduo_base)
+
+add_executable(threadlocalsingleton_test ThreadLocalSingleton_test.cc)
+target_link_libraries(threadlocalsingleton_test muduo_base)
+
+add_executable(threadlocal_test ThreadLocal_test.cc)
+target_link_libraries(threadlocal_test muduo_base)
+
+add_executable(log_test1 Log_test1.cc)
+target_link_libraries(log_test1 muduo_base)
+
+add_executable(log_test2 log_test2.cpp)
+target_link_libraries(log_test2 muduo_base)
