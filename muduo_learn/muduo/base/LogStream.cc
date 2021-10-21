@@ -211,6 +211,7 @@ const char* FixedBuffer<SIZE>::debugString()
   return data_;
 }
 
+// cookies相关不知道起什么作用
 template<int SIZE>
 void FixedBuffer<SIZE>::cookieStart()
 {
@@ -239,6 +240,7 @@ void LogStream::formatInteger(T v)
   if (buffer_.avail() >= kMaxNumericSize)
   {
     size_t len = convert(buffer_.current(), v);
+    // 这个convert是专门用来int的
     buffer_.add(len);
   }
 }
@@ -290,7 +292,7 @@ LogStream& LogStream::operator<<(unsigned long long v)
   formatInteger(v);
   return *this;
 }
-
+// 未知的东西就打印地址
 LogStream& LogStream::operator<<(const void* p)
 {
   uintptr_t v = reinterpret_cast<uintptr_t>(p);

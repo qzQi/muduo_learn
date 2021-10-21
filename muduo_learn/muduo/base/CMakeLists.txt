@@ -28,8 +28,11 @@ set(base_SRCS
   ThreadPool.cc
   LogStream.cc
   Logging.cc
+  LogFile.cc
   TimeZone.cc
   Date.cc
+  FileUtil.cc
+  ProcessInfo.cc
   )
 
 # 用我们的源文件生成一个库lib 生成muduo_base库

@@ -28,6 +28,7 @@ class FixedBuffer : noncopyable
   FixedBuffer()
     : cur_(data_)
   {
+    // 目前没使用
     setCookie(cookieStart);
   }
 
@@ -38,7 +39,7 @@ class FixedBuffer : noncopyable
 
   void append(const char* /*restrict*/ buf, size_t len)
   {
-    // FIXME: append partially
+    // FIXME: append partially:我们可以拓展一下，在avail不够的时候添加部分
     if (implicit_cast<size_t>(avail()) > len)
     {
       memcpy(cur_, buf, len);

@@ -9,7 +9,7 @@
 #include "muduo/base/copyable.h"
 #include <memory>
 #include <time.h>
-
+// 应该就是用来设置时区的。
 namespace muduo
 {
 

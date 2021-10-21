@@ -31,6 +31,7 @@ class Logger
   };
 
   // compile time calculation of basename of source file
+  // 给Logger对象提供源文件信息，源文件的名称basename
   class SourceFile
   {
    public:
@@ -69,10 +70,10 @@ class Logger
   ~Logger();
 
   LogStream& stream() { return impl_.stream_; }
-
+  // 类的静态设置函数，通过设置会影响下一个Logger对象的行为
   static LogLevel logLevel();
   static void setLogLevel(LogLevel level);
-
+// typedef std::function<void(const char*,int) OutputFunc;
   typedef void (*OutputFunc)(const char* msg, int len);
   typedef void (*FlushFunc)();
   static void setOutput(OutputFunc);
@@ -82,7 +83,7 @@ class Logger
  private:
 
 // 嵌套类，作为Logger类的实现部分,为什么需要使用这个嵌套类
-// 这个Logger有很多的构造函数，我们的Impl类的功能也很简单，就是用来
+// 这个Logger有很多的构造函数，我们的Impl类的功能也很简单，就是用来，没有看到这个errno哪来的
 class Impl
 {
  public:

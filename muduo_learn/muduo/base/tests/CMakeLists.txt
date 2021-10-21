@@ -40,3 +40,15 @@ target_link_libraries(log_test1 muduo_base)
 
 add_executable(log_test2 log_test2.cpp)
 target_link_libraries(log_test2 muduo_base)
+
+add_executable(logfile_test LogFile_test.cc)
+target_link_libraries(logfile_test muduo_base)
+
+add_executable(fileutil_test FileUtil_test.cc)
+target_link_libraries(fileutil_test muduo_base)
+
+add_executable(processinfo_test ProcessInfo_test.cc)
+target_link_libraries(processinfo_test muduo_base)
+
+add_executable(logging_test Logging_test.cc)
+target_link_libraries(logging_test muduo_base)

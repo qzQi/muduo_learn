@@ -2,7 +2,7 @@
 // that can be found in the License file.
 //
 // Author: Shuo Chen (chenshuo at chenshuo dot com)
-
+ 
 #include "muduo/base/LogFile.h"
 
 #include "muduo/base/FileUtil.h"
@@ -11,7 +11,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <time.h>
-
+ 
 using namespace muduo;
 
 LogFile::LogFile(const string& basename,
@@ -64,9 +64,12 @@ void LogFile::flush()
 void LogFile::append_unlocked(const char* logline, int len)
 {
   file_->append(logline, len);
+  // 修改writtenBytes
 
+// 滚动文件仅仅两个条件，1、一个文件写够足够多；2、一个文件  记录条数大于1024&&新开了一天
   if (file_->writtenBytes() > rollSize_)
   {
+    // 写入的字节数足够了，rollSize是我们传入的
     rollFile();
   }
   else
@@ -79,10 +82,12 @@ void LogFile::append_unlocked(const char* logline, int len)
       time_t thisPeriod_ = now / kRollPerSeconds_ * kRollPerSeconds_;
       if (thisPeriod_ != startOfPeriod_)
       {
+        //判断是不是新的一天
         rollFile();
       }
       else if (now - lastFlush_ > flushInterval_)
       {
+        // 只有记录足够1024条并且间隔＞三秒，才会手动flush一下AppendFile的缓冲区（64kb）
         lastFlush_ = now;
         file_->flush();
       }
@@ -102,11 +107,13 @@ bool LogFile::rollFile()
     lastFlush_ = now;
     startOfPeriod_ = start;
     file_.reset(new FileUtil::AppendFile(filename));
+    // 重新创建并打开文件
     return true;
   }
   return false;
 }
 
+// 为我们的日志文件起名字，basename一般就是主程序源文件：basename，年月日，时分秒，主机名，进程号
 string LogFile::getLogFileName(const string& basename, time_t* now)
 {
   string filename;
@@ -116,7 +123,7 @@ string LogFile::getLogFileName(const string& basename, time_t* now)
   char timebuf[32];
   struct tm tm;
   *now = time(NULL);
-  gmtime_r(now, &tm); // FIXME: localtime_r ?
+  gmtime_r(now, &tm); // FIXME: localtime_r ?看看GMT时间与localtime的区别
   strftime(timebuf, sizeof timebuf, ".%Y%m%d-%H%M%S.", &tm);
   filename += timebuf;
 
