@@ -21,6 +21,8 @@ FileUtil::AppendFile::AppendFile(StringArg filename)
 {
   assert(fp_);
   ::setbuffer(fp_, buffer_, sizeof buffer_);
+  // 将文件设置为全缓冲，每次的write操作写进stdio的缓冲，线程不安全，安全性由上层来提供
+  // 改变stdio库的默认文件缓冲大小，文件是全缓冲，但是缓冲区大小可能不尽人意，但是我们自己设置后还需要自己进行管理吗？
   // posix_fadvise POSIX_FADV_DONTNEED ?
 }
 
@@ -36,6 +38,7 @@ void FileUtil::AppendFile::append(const char* logline, const size_t len)
   while (remain > 0)
   {
     size_t x = write(logline + n, remain);
+    // 自定义的函数，我说怎么可能突然去掉file*该用fp了。
     if (x == 0)
     {
       int err = ferror(fp_);
@@ -83,6 +86,7 @@ FileUtil::ReadSmallFile::~ReadSmallFile()
 }
 
 // return errno
+// 显然这个长的不可能是给我们的使用者来调用的
 template<typename String>
 int FileUtil::ReadSmallFile::readToString(int maxSize,
                                           String* content,
@@ -125,7 +129,7 @@ int FileUtil::ReadSmallFile::readToString(int maxSize,
         err = errno;
       }
     }
-
+// size是写入的数据大小，reverse是存储空间
     while (content->size() < implicit_cast<size_t>(maxSize))
     {
       size_t toRead = std::min(implicit_cast<size_t>(maxSize) - content->size(), sizeof(buf_));
@@ -150,6 +154,7 @@ int FileUtil::ReadSmallFile::readToString(int maxSize,
 int FileUtil::ReadSmallFile::readToBuffer(int* size)
 {
   int err = err_;
+  // 每次都先保存一下errno，不直接返回err_,因为可能返回其他函数的错误
   if (fd_ >= 0)
   {
     ssize_t n = ::pread(fd_, buf_, sizeof(buf_)-1, 0);
@@ -174,6 +179,7 @@ template int FileUtil::readFile(StringArg filename,
                                 string* content,
                                 int64_t*, int64_t*, int64_t*);
 
+// 我们使用了StringArg不需要特化两个版本了。
 template int FileUtil::ReadSmallFile::readToString(
     int maxSize,
     string* content,

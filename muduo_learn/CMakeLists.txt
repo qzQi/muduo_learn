@@ -109,6 +109,7 @@ message(STATUS "CXX_FLAGS = " ${CMAKE_CXX_FLAGS} " " ${CMAKE_CXX_FLAGS_${BUILD_T
 # 子目录如何编译取决于我们子目录的CMakeLists.txt
 add_subdirectory(muduo/base)
 # add_subdirectory(muduo/net)目前不用
+add_subdirectory(muduo/net)
 
 # 编译样例，我们学习的暂时没有，先去掉
 # muduo库对应的example目录。

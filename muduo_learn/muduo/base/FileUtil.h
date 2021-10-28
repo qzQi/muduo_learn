@@ -11,7 +11,7 @@
 #include "muduo/base/noncopyable.h"
 #include "muduo/base/StringPiece.h"
 #include <sys/types.h>  // for off_t
-
+// 这里面就是一个我们文件类LogFile的文件操作在这里。
 namespace muduo
 {
 namespace FileUtil
@@ -42,6 +42,7 @@ class ReadSmallFile : noncopyable
 
  private:
   int fd_;
+  // 读取文件使用的fd，不使用FILE*？
   int err_;
   char buf_[kBufferSize];
 };
@@ -59,7 +60,7 @@ int readFile(StringArg filename,
   return file.readToString(maxSize, content, fileSize, modifyTime, createTime);
 }
 
-// not thread safe
+// not thread safe，这个是向文件写入数据，我们的LogFile类使用到了。
 class AppendFile : noncopyable
 {
  public:

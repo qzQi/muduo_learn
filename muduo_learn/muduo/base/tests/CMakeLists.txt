@@ -52,3 +52,9 @@ target_link_libraries(processinfo_test muduo_base)
 
 add_executable(logging_test Logging_test.cc)
 target_link_libraries(logging_test muduo_base)
+
+if(ZLIB_FOUND)
+  add_executable(gzipfile_test GzipFile_test.cc)
+  target_link_libraries(gzipfile_test muduo_base z)
+  add_test(NAME gzipfile_test COMMAND gzipfile_test)
+endif()
