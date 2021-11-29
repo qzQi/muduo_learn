@@ -1,3 +1,0 @@
-/home/qizhiyun/muduo_code/09基于对象例子/build/CMakeFiles/rebuild_cache.dir
-/home/qizhiyun/muduo_code/09基于对象例子/build/CMakeFiles/edit_cache.dir
-/home/qizhiyun/muduo_code/09基于对象例子/build/CMakeFiles/Thread_test.dir
